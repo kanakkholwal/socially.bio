@@ -247,7 +247,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="mt-6 max-w-4xl mx-auto flex justify-center items-stretch">
+          <div className="mt-6 max-w-4xl mx-auto hidden lg:flex justify-center items-stretch">
             <Image src='/illustration.svg' width={928} height={720} alt={"Socially Bio"} className="w-full min-h-[50rem] h-full mix-blend-multiply -mt-32 -z-10 select-none	pointer-events-none" draggable={false} />
             {/* <div className="flex space-x-6 md:space-x-8"> */}
             {/* <a href="https://www.producthunt.com/posts/socially-bio?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-socially-bio" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=308558&theme=light" alt="Socially Bio - The only link you'll ever need. | Product Hunt" style={{width: '250px', height: '54px'}} width="250" height="54" /></a> */}
@@ -259,16 +259,16 @@ export default function Home() {
         </div>
 
       </header>
-      <section className="bg-white py-32 px-8  min-h-[576px]  bg-center bg-no-repeat bg-contain"
+      <section className="bg-white  w-full py-32 px-8  min-h-[576px]  bg-center bg-no-repeat bg-contain"
         // style={{ backgroundImage: "url(/illustration_2.svg)" }}
         id="about">
-        <div className="w-full max-w-7xl mx-auto flex items-center justify-center ">
+        <div className="w-full max-w-7xl mx-auto flex items-center justify-center flex-wrap ">
 
-          <div className="min-w-[36rem]">
+          <div className=" w-full lg:w-[50%]">
 
-            <Image src='/illustration_2.svg' width={928} height={720} alt={"Socially Bio"} className="w-full h-full mix-blend-multiply min-h-[576px] select-none	pointer-events-none" draggable={false} />
+            <Image src='/illustration_2.svg' width={928} height={720} alt={"Socially Bio"} className="w-[36rem] max-w-full h-full mix-blend-multiply min-h-[576px] select-none	pointer-events-none" draggable={false} />
           </div>
-          <div className="flex flex-col items-start space-y-4 text-left p-8 w-full">
+          <div className="flex flex-col items-start space-y-4 text-left p-8 w-full lg:w-[50%]">
             <h3 className="text-6xl font-extrabold text-slate-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
               About Socially Bio
             </h3>
@@ -278,21 +278,21 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-slate-800 py-32 px-8  min-h-96" id="features">
+      <section className="bg-slate-800 py-32 px-8  min-h-96  w-full" id="features">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-6xl font-extrabold text-white sm:text-5xl sm:tracking-tight lg:text-6xl">
             Features
           </h2>
           <div className="flex">
 
-            <div className="flex flex-col items-start  w-full gap-4 mt-7">
+            <div className="flex flex-col items-start  gap-4 mt-7  w-full lg:w-50%">
               {features.map((feature, index) => {
                 return <Feature key={index} title={feature.title} description={feature.description} icon={feature.icon} />
               })}
             </div>
-            <div className="flex-auto flex justify-center items-center">
+            <div className="flex-auto  justify-center items-center  w-full lg:w-50% hidden lg:flex">
               <Image src='/features.png' width={928} height={720} alt={"Socially Bio"}
-                className="w-full h-full min-h-[28rem] select-none	pointer-events-none"
+                className="w-full h-full min-h-[28rem] aspect-[4/3] select-none	pointer-events-none"
                 draggable={false} />
 
             </div>
@@ -301,7 +301,7 @@ export default function Home() {
         </div>
 
       </section>
-      <section className="bg-tertiary/10  py-32 px-8  min-h-96" id="features">
+      <section className="bg-tertiary/10  py-32 px-8  min-h-96 w-full" id="faqs">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-6xl font-extrabold text-slate-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
             Frequently Asked Questions
@@ -310,7 +310,7 @@ export default function Home() {
             <Accordion type="multiple" className="w-full space-y-5">
               {faqs.map((faq, index) => {
                 return <AccordionItem value={"item-" + index} key={index} className="bg-primary/10 rounded-xl data-[state=open]:bg-primary/20">
-                  <AccordionTrigger className="p-5 px-8 text-3xl font-bold text-slate-700 !no-underline data-[state=open]:text-slate-900">
+                  <AccordionTrigger className="p-5 px-8 text-3xl font-bold text-left text-slate-700 !no-underline data-[state=open]:text-slate-900">
                     {faq.title}
                   </AccordionTrigger>
                   <AccordionContent className="text-slate-800 font-medium text-lg text-left px-9">
@@ -325,7 +325,7 @@ export default function Home() {
         </div>
 
       </section>
-      <section className="bg-primary/10  pt-32 pb-10 px-8  min-h-96" id="footer">
+      <section className="bg-primary/10  pt-32 pb-10 px-8  min-h-96 w-full" id="footer">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-3xl font-extrabold text-slate-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
             Connect your world, one link at a time.
