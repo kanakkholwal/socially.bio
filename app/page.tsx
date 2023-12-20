@@ -1,113 +1,388 @@
-import Image from 'next/image'
+"use client";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Space_Grotesk } from 'next/font/google';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from "react";
+
+const space_font = Space_Grotesk({ subsets: ['latin'], preload: true })
+
+const navLinks = [
+  {
+    title: 'Home',
+    href: '/',
+  },
+  {
+    title: 'About',
+    href: '/about',
+  },
+  {
+    title: 'Services',
+    href: '/services',
+  },
+  {
+    title: 'Pricing',
+    href: '/pricing',
+  },
+  {
+    title: 'Contact',
+    href: '/contact',
+  },
+
+]
+function Navbar() {
+
+  return (<div className='w-full bg-transparent h-28 px-8 flex justify-center items-center border-b border-border'>
+    <div className='w-full max-w-7xl flex justify-between items-center mx-auto'>
+
+      <Link href='/' className="flex-auto">
+        <Image src='/socially-bio.svg' width={200} height={100} alt={"Socially Bio - The only link you'll ever need."} className="w-48 h-10" draggable={false} />
+      </Link>
+      <div className='flex items-center'>
+        <nav role='navigation' className='hidden lg:flex space-x-8 mr-8'>
+          {navLinks.map((link, index) => (
+            <Link href={link.href} key={index} className='text-lg font-medium text-grey-400 hover:text-slate-900'>
+              {link.title}
+
+            </Link>
+          ))}
+        </nav>
+        <Button size="lg" className="rounded-full hover:bg-black ease-linear duration-300" asChild>
+          <Link href='https://app.socially.bio/'>
+            Get Started
+          </Link>
+        </Button>
+      </div>
+
+    </div>
+  </div>)
+}
+const features = [
+  {
+    title: 'Social Media Links',
+    description:
+      'Add all your social media links to your page and share it with your followers.',
+    icon: (
+      <svg
+        className="h-6 w-6 text-white"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Link in Bio',
+    description:
+      'Add your Socially Bio link to your Instagram bio and never change it again.',
+    icon: (
+      <svg
+        className="h-6 w-6 text-white"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          clipRule="evenodd"
+          d="M13 10V3L4 14h7v7l9-11h-7z"
+          fillRule="evenodd"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: 'Content Distribution',
+    description:
+      'Automatically distribute your content to all your social media profiles.',
+    icon: (
+      <svg
+        className="h-6 w-6 text-white"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          clipRule="evenodd"
+          d="M13 10V3L4 14h7v7l9-11h-7z"
+          fillRule="evenodd"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: 'Analytics',
+    description:
+      'Track your page views and link clicks with our analytics dashboard.',
+    icon: (
+      <svg
+        className="h-6 w-6 text-white"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          clipRule="evenodd"
+          d="M13 10V3L4 14h7v7l9-11h-7z"
+          fillRule="evenodd"
+        />
+      </svg>
+    ),
+  }, {
+    title: 'Customization',
+    description:
+      'Customize your page with your own logo, background image and colors.',
+    icon: (
+      <svg
+        className="h-6 w-6 text-white"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          clipRule="evenodd"
+          d="M13 10V3L4 14h7v7l9-11h-7z"
+          fillRule="evenodd"
+        />
+      </svg>
+    ),
+  },
+  // {
+  //   title: 'Custom Domain',
+  //   description:
+  //     'Use your own domain name to make your page look more professional.',
+  //   icon: (
+  //     <svg
+  //       className="h-6 w-6 text-white"
+  //       fill="none"
+  //       strokeLinecap="round"
+  //       strokeLinejoin="round"
+  //       strokeWidth={2}
+  //       viewBox="0 0 24 24"
+  //       stroke="currentColor"
+  //     >
+  //       <path
+  //         clipRule="evenodd"
+  //         d="M13 10V3L4 14h7v7l9-11h-7z"
+  //         fillRule="evenodd"
+  //       />
+  //     </svg>
+  //   ),
+  // },
+
+]
+const faqs = [
+  {
+    title: 'How does it work?',
+    description:
+      'Socially Bio is a free tool that allows you to create a beautiful landing page that drives traffic to all of your social media profiles with one link and automate your content distribution.',
+  },
+  {
+    title: 'How much does it cost?',
+    description:
+      'Socially Bio is free to use. We plan to introduce a pro plan in the future with more features.',
+
+  },
+  {
+    title: 'How do I get started?',
+    description:
+      'Click the Get Started button and sign up for an account. Once you have created your account, you can start adding your social media links.',
+
+  },
+  {
+    title: 'How do I add my Socially Bio link to my Instagram bio?',
+    description:
+      'Once you have created your Socially Bio page, you can add the link to your Instagram bio by clicking the Edit Profile button on your Instagram profile and pasting the link in the Website field.',
+  },
+
+]
+
 
 export default function Home() {
+  const [username, setUsername] = useState('');
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      <header className='w-full bg-tertiary/10 min-h-96'>
+        <Navbar />
+        <div role="banner" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-stretch justify-between">
+          <div className="max-w-4xl mx-auto py-16 sm:py-20 lg:py-24">
+            <h1 className="text-4xl font-extrabold text-slate-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+              <span className={"block text-8xl mb-2 " + space_font.className}>Socially Bio</span>
+              <span className="block text-primary">The only link you'll ever need.</span>
+            </h1>
+            <p className="mt-6 text-xl text-gray-500">
+              Socially Bio is a free tool that allows you to create a beautiful landing page that drives traffic to all of your social media profiles with one link
+              and automate your content distribution.
+            </p>
+            <div className="mt-10">
+              <div className="inline-flex ">
+                <Button size="lg" className="rounded-full hover:bg-black ease-linear duration-300 shadow-primary/30 text-lg h-16" asChild>
+                  <Link href={'https://app.socially.bio/?username=' + username} target="_blank">
+                    Get Started
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div className="mt-6 max-w-4xl mx-auto hidden lg:flex justify-center items-stretch">
+            <Image src='/illustration.svg' width={928} height={720} alt={"Socially Bio"} className="w-full min-h-[50rem] h-full mix-blend-multiply -mt-32 -z-10 select-none	pointer-events-none" draggable={false} />
+            {/* <div className="flex space-x-6 md:space-x-8"> */}
+            {/* <a href="https://www.producthunt.com/posts/socially-bio?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-socially-bio" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=308558&theme=light" alt="Socially Bio - The only link you'll ever need. | Product Hunt" style={{width: '250px', height: '54px'}} width="250" height="54" /></a> */}
+            {/* </div> */}
+          </div>
+
+
+
         </div>
+
+      </header>
+      <section className="bg-white  w-full py-32 px-8  min-h-[576px]  bg-center bg-no-repeat bg-contain"
+        // style={{ backgroundImage: "url(/illustration_2.svg)" }}
+        id="about">
+        <div className="w-full max-w-7xl mx-auto flex items-center justify-center flex-wrap ">
+
+          <div className=" w-full lg:w-[50%]">
+
+            <Image src='/illustration_2.svg' width={928} height={720} alt={"Socially Bio"} className="w-[36rem] max-w-full h-full mix-blend-multiply min-h-[576px] select-none	pointer-events-none" draggable={false} />
+          </div>
+          <div className="flex flex-col items-start space-y-4 text-left p-8 w-full lg:w-[50%]">
+            <h3 className="text-6xl font-extrabold text-slate-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+              About Socially Bio
+            </h3>
+            <p className={"text-2xl text-slate-800  font-semibold break-words" + space_font.className}>
+              Socially Bio is a free tool that allows you to create a beautiful landing page that drives traffic to all of your social media profiles with one link and automate your content distribution.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section className="bg-slate-800 py-32 px-8  min-h-96  w-full" id="features">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-6xl font-extrabold text-white sm:text-5xl sm:tracking-tight lg:text-6xl">
+            Features
+          </h2>
+          <div className="flex">
+
+            <div className="flex flex-col items-start  gap-4 mt-7  w-full lg:w-50%">
+              {features.map((feature, index) => {
+                return <Feature key={index} title={feature.title} description={feature.description} icon={feature.icon} />
+              })}
+            </div>
+            <div className="flex-auto  justify-center items-center  w-full lg:w-50% hidden lg:flex">
+              <Image src='/features.png' width={928} height={720} alt={"Socially Bio"}
+                className="w-full h-full min-h-[28rem] aspect-[4/3] select-none	pointer-events-none"
+                draggable={false} />
+
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+      <section className="bg-tertiary/10  py-32 px-8  min-h-96 w-full" id="faqs">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-6xl font-extrabold text-slate-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+            Frequently Asked Questions
+          </h2>
+          <div className="max-w-5xl mx-auto mt-10">
+            <Accordion type="multiple" className="w-full space-y-5">
+              {faqs.map((faq, index) => {
+                return <AccordionItem value={"item-" + index} key={index} className="bg-primary/10 rounded-xl data-[state=open]:bg-primary/20">
+                  <AccordionTrigger className="p-5 px-8 text-3xl font-bold text-left text-slate-700 !no-underline data-[state=open]:text-slate-900">
+                    {faq.title}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-slate-800 font-medium text-lg text-left px-9">
+                    {faq.description}
+                  </AccordionContent>
+                </AccordionItem>
+              })}
+            </Accordion>
+
+          </div>
+
+        </div>
+
+      </section>
+      <section className="bg-primary/10  pt-32 pb-10 px-8  min-h-96 w-full" id="footer">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-3xl font-extrabold text-slate-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+            Connect your world, one link at a time.
+          </h2>
+          <h4 className="text-xl font-extrabold text-slate-700 sm:text-2xl sm:tracking-tight lg:text-5xl mt-2">
+            Start with Socially Bio
+          </h4>
+          <div
+            className="max-w-5xl mx-auto mt-10 flex flex-col justify-center items-center">
+            <div className="relative grid w-full max-w-lg items-center gap-1.5">
+              <span className="absolute inset-y-0 left-0 flex items-center pl-4 text-lg text-slate-500">
+                socially.bio/
+              </span>
+              <Input type="text" id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                variant="fluid"
+                placeholder="username" className="pl-[113px] pr-10 py-8 border-2 shadow-xl bg-white text-lg text-primary font-medium rounded-xl" />
+            </div>
+            <Button size="lg" className="rounded-full hover:bg-black ease-linear duration-300 shadow-primary/30 text-lg h-16 mt-5 shadow-xl hover:shadow-slate-300 " asChild>
+              <Link href={'https://app.socially.bio/?username=' + username} target="_blank">
+                Claim your Bio Link
+              </Link>
+
+            </Button>
+          </div>
+
+          <footer className="bg-white p-5 rounded-xl mt-32" id="footer">
+
+            <div className="flex flex-col items-center justify-center mt-5">
+              <div className="flex space-x-4">
+                <Link href='/' className="flex-auto">
+                  <Image src='/socially-bio.svg' width={200} height={100} alt={"Socially Bio - The only link you'll ever need."} className="w-48 h-10" draggable={false} />
+                </Link>
+                {/* <a href="https://www.producthunt.com/posts/socially-bio?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-socially-bio" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=308558&theme=light" alt="Socially Bio - The only link you'll ever need. | Product Hunt" style={{ width: '250px', height: '54px' }} width="250" height="54" /></a> */}
+              </div>
+            </div>
+              <p className="text-gray-500 text-sm items-center  mt-5">© {new Date().getFullYear()} Socially Bio. All rights reserved.</p>
+
+          </footer>
+        </div>
+      </section>
+
+    </>
+  )
+}
+
+function Feature({ title, description, icon }: { title: string, description: string, icon: React.ReactNode }) {
+  return (
+    <div className="flex gap-4 items-center justify-center">
+      <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+        {icon}
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="mt-5">
+        <h3 className="text-lg font-medium text-white">{title}</h3>
+        <p className="mt-2 text-base text-white">{description}</p>
       </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   )
 }
