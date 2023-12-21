@@ -41,7 +41,11 @@ export const OPENERS = [
                     return `${base}playlist?id=${playlistId}`;
                 } else if (youtubeLink.includes('youtu.be')) {
                     const videoId = parts[parts.length - 1]
-                    return `${base}video?id=${videoId}`;
+                    if (videoId) {
+                        return `${base}video?id=${videoId}`;
+                    } else {
+                        return `vnd.youtube://${youtubeLink}` || "Invalid YouTube link format";
+                    }
                 } else {
                     return `vnd.youtube://${youtubeLink}` || "Invalid YouTube link format";
                 }
@@ -440,7 +444,7 @@ export const OPENERS = [
         getOpener: (link: string) => {
             if (!link.startsWith('')) {
                 console.log("Invalid link format. Opening in default browser.");
-                return `googlechrome://${link}` || window.open(link)    
+                return `googlechrome://${link}` || window.open(link)
 
             }
 

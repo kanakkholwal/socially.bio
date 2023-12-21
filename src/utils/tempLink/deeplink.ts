@@ -95,7 +95,13 @@ export default class LinkOpener<T extends TempLinkType> {
     let appScheme = '';
     const availableOpener = OPENERS.find((item) => item.id.toLowerCase() === opener.toLowerCase())
     if (availableOpener && availableOpener.getOpener) {
-      const snatisedLink = link.replace("https","").replace("http","").replace(":","").replace("//","")
+      
+      let snatisedLink = link.replace("https","").replace("http","").replace(":","").replace("//","")
+      // remove after ? if any
+      const indexOfQuestionMark = snatisedLink.indexOf('?');
+      if (indexOfQuestionMark !== -1) {
+        snatisedLink = snatisedLink.substring(0, indexOfQuestionMark);
+      }
       console.log("snatisedLink",snatisedLink)
       appScheme = availableOpener.getOpener(snatisedLink) || '';
       console.log("Going to open", appScheme)
