@@ -167,6 +167,7 @@ export const OPENERS = [
                     const username = parts[parts.length - 1];
                     return `${base}user?username=${username}`;
                 } else {
+                    parts.shift();
                     return `instagram://${parts.join('/')}` || "Invalid Instagram link format";
                 }
             } else {
