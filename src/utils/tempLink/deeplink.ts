@@ -103,7 +103,7 @@ export default class LinkOpener<T extends TempLinkType> {
     let appScheme = '';
     const availableOpener = OPENERS.find((item) => item.id.toLowerCase() === opener.toLowerCase())
     if (availableOpener && availableOpener.getOpener) {
-      let snatisedLink = link.replace("https", "").replace("http", "").replace(":", "").replace("//", "").replace("www.", "").replace("m.", "")
+      let snatisedLink = link.replace("https", "").replace("http", "").replace(":", "").replace("//", "").replace("www.", "").replace("m.youtube", "youtube")
       console.log("snatisedLink", snatisedLink)
       appScheme = availableOpener.getOpener(snatisedLink) || '';
       console.log("Going to open", appScheme)
