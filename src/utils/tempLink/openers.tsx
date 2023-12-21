@@ -32,7 +32,7 @@ export const OPENERS = [
                     }
 
                     if (videoId) {
-                        return `${base}video?id=${videoId}`;
+                        return `${base}${videoId}`;
                     } else {
                         return `vnd.youtube://${youtubeLink}` || "Invalid YouTube link format";
                     }
@@ -42,7 +42,7 @@ export const OPENERS = [
                 } else if (youtubeLink.includes('youtu.be')) {
                     const videoId = parts[parts.length - 1]
                     if (videoId) {
-                        return `${base}video?id=${videoId}`;
+                        return `${base}${videoId}`;
                     } else {
                         return `vnd.youtube://${youtubeLink}` || "Invalid YouTube link format";
                     }
