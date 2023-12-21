@@ -38,7 +38,7 @@ export const OPENERS = [
                     }
                 } else if (youtubeLink.includes('/playlist')) {
                     const playlistId = parts[parts.length - 1].split('list=')[1];
-                    return `${base}playlist?id=${playlistId}`;
+                    return `${base}playlist?list=${playlistId}`;
                 } else if (youtubeLink.includes('youtu.be')) {
                     const videoId = parts[parts.length - 1]
                     if (videoId) {
