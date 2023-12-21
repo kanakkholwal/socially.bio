@@ -73,7 +73,7 @@ export const OPENERS = [
                 const parts = twitterLink.split('/');
                 const base = 'twitter://';
                 // regex to check if it has username ^https?://(www\.)?twitter\.com/(#!/)?([^/]+)(/\w+)*$
-                const usernameRegex = new RegExp('(?:https?:\/\/)?(?:www\.)?(?:twitter|x)\.com\/(?:#!\/)?@?([a-zA-Z0-9_]{1,15})');
+                const usernameRegex = new RegExp('(?:twitter|x)\.com\/(?:#!\/)?@?([a-zA-Z0-9_]{1,15})');
                 if (usernameRegex.test(twitterLink)) {
                     const username = parts[parts.length - 1];
                     return `${base}user?screen_name=${username}`;
@@ -140,7 +140,7 @@ export const OPENERS = [
             if (instagramLink.startsWith('instagram.com')) {
                 const parts = instagramLink.split('/');
                 const base = 'instagram://';
-                const instagramRegex = new RegExp('(?:https?:\/\/)?(?:www\.)?instagram\.com\/(?:[a-zA-Z0-9_\.]{1,30})');
+                const instagramRegex = new RegExp('instagram\\.com\\/(?:[a-zA-Z0-9_\\.]{1,30})');
 
                 if (instagramRegex.test(instagramLink)) {
                     const username = parts[parts.length - 1];

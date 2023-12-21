@@ -87,17 +87,24 @@ export default class LinkOpener<T extends TempLinkType> {
     // } else{
     // }
     // console.log("appIdentifier",appIdentifier)
-    this.openInApp(appIdentifier.browser, link, opener);
-
+    if (this.isIOS()) {
+      console.log("isIOS")
+      this.openInApp(appIdentifier.browser, link, opener);
+    } else if (this.getMobileOperatingSystem() === 'Android') {
+      console.log("Android")
+      this.openInApp(appIdentifier.browser, link, opener);
+    } else {
+      console.log("neither Android nor iOS")
+      this.openInDefaultBrowser(link);
+    }
 
   }
   private openInApp(platform: string, link: string, opener: string): void {
     let appScheme = '';
     const availableOpener = OPENERS.find((item) => item.id.toLowerCase() === opener.toLowerCase())
     if (availableOpener && availableOpener.getOpener) {
-      let snatisedLink = link.replace("https","").replace("http","").replace(":","").replace("//","")
-
-      console.log("snatisedLink",snatisedLink)
+      let snatisedLink = link.replace("https", "").replace("http", "").replace(":", "").replace("//", "").replace("www.", "").replace("m.", "")
+      console.log("snatisedLink", snatisedLink)
       appScheme = availableOpener.getOpener(snatisedLink) || '';
       console.log("Going to open", appScheme)
       window.open(appScheme, '_blank');
@@ -105,14 +112,14 @@ export default class LinkOpener<T extends TempLinkType> {
     }
 
     if (appScheme) {
-      if (this.isIOS()) {
-        window.location.href = appScheme; // Open in iOS app
-      } else {
+      if (this.getMobileOperatingSystem() === 'Android') {
         const androidIntent = `intent://${appScheme}#Intent;scheme=${platform};package=com.${platform};S.browser_fallback_url=${encodeURIComponent(link)};end;`;
         window.location.assign(androidIntent) // Open in Android app
         window.setTimeout(() => {
           window.location.href = link; // Open in browser if Android app not installed
         })
+      } else {
+        window.location.href = appScheme; // Open in iOS app
       }
     } else {
       // If platform not found or unsupported, open in default browser
@@ -131,113 +138,3 @@ export default class LinkOpener<T extends TempLinkType> {
   }
 
 }
-
-
-// switch (opener.toLowerCase()) {
-//   case 'instagram':
-//   appScheme = `instagram://user?username=${link}`;
-//   break;
-// case 'youtube':
-//   appScheme = `vnd.youtube://${link}`;
-//   break;
-// case 'facebook':
-//   appScheme = `fb://profile/${link}`;
-//   break;
-// case 'twitter':
-//   appScheme = `twitter://user?screen_name=${link}`;
-//   break;
-// case 'slack':
-//   appScheme = `slack://channel?team=${link}`;
-//   break;
-// case 'discord':
-//   appScheme = `discord://server/${link}`;
-//   break;
-//   case 'tiktok':
-//     appScheme = `tiktok://user/${link}`;
-//     break;
-//   case 'snapchat':
-//     appScheme = `snapchat://add/${link}`;
-//     break;
-//   case 'tumblr':
-//     appScheme = `tumblr://x-callback-url/blog?blogName=${link}`;
-//     break;
-//   case 'reddit':
-//     appScheme = `reddit://user_profile/${link}`;
-//     break;
-//   case 'telegram':
-//     appScheme = `tg://resolve?domain=${link}`;
-//     break;
-//   case 'whatsapp':
-//     appScheme = `whatsapp://send?text=${link}`;
-//     break;
-//   case 'linkedin':
-//     appScheme = `linkedin://profile/${link}`;
-//     break;
-//   case 'spotify':
-//     appScheme = `spotify://user/${link}`;
-//     break;
-//   case 'twitch':
-//     appScheme = `twitch://user?user=${link}`;
-//     break;
-//   case 'github':
-//     appScheme = `github://user?username=${link}`;
-//     break;
-//   case 'medium':
-//     appScheme = `medium://user/${link}`;
-//     break;
-//   case 'soundcloud':
-//     appScheme = `soundcloud://users/${link}`;
-//     break;
-//   case 'itunes':
-//     appScheme = `itms://itunes.apple.com/${link}`;
-//     break;
-
-//   case 'messenger':
-//     appScheme = `fb-messenger://user-thread/${link}`;
-//     break;
-//     case 'pinterest':
-//       appScheme = `pinterest://pin/${link}`;
-//       break;
-// case 'line':
-//   appScheme = `line://msg/text/${link}`;
-//   break;
-// case 'wechat':
-//   appScheme = `weixin://dl/chat?${link}`;
-//   break;
-// case 'puffin':
-//   appScheme = `puffin://navigate?url=${link}`;
-//   break;
-// case 'miui':
-//   appScheme = `miuipro://navigate?url=${link}`;
-//   break;
-// // case 'chrome':
-// //   appScheme = `googlechrome://${link}`;
-// //   break;
-// // case 'safari':
-// //   appScheme = `safari://open?url=${link}`;
-// //   break;
-// // case 'ie':
-// //   appScheme = `microsoft-edge:${link}`;
-// //   break;
-// // case 'firefox':
-// //   appScheme = `firefox://open-url?url=${link}`;
-// //   break;
-//   // Add cases for other platforms as needed
-//   default:
-
-//     break;
-// }
-
-// const click_link = document.getElementById("abcd");
-// console.log(app_intend);
-// if (app_intend === "Desktop" || app_intend === "Mobile") {
-//   app_intend = originalURL;
-// }
-// if (this.state.ostype == "windows") {
-//   click_link.setAttribute("href", app_intend);
-//   click_link.click();
-//   //console.log("hello")
-// } else {
-//   click_link.setAttribute("href", app_intend);
-//   window.location.assign(app_intend);
-// }
