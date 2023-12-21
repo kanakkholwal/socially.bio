@@ -9,7 +9,7 @@ export const OPENERS = [
         id: "youtube",
         icon: <BsYoutube className="w-6 h-6 mr-2 text-red-600" />,
         getOpener: (youtubeLink: string) => {
-            if (youtubeLink.startsWith('www.youtube.com') || youtubeLink.startsWith('youtu.be')) {
+            if (youtubeLink.startsWith('youtube.com') || youtubeLink.startsWith('youtu.be')) {
                 const parts = youtubeLink.split('/');
                 const base = 'vnd.youtube://';
 
