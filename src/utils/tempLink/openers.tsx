@@ -9,7 +9,7 @@ export const OPENERS = [
         id: "youtube",
         icon: <BsYoutube className="w-6 h-6 mr-2 text-red-600" />,
         getOpener: (youtubeLink: string) => {
-            if (youtubeLink.startsWith('https://www.youtube.com') || youtubeLink.startsWith('https://youtu.be')) {
+            if (youtubeLink.startsWith('www.youtube.com') || youtubeLink.startsWith('youtu.be')) {
                 const parts = youtubeLink.split('/');
                 const base = 'vnd.youtube://';
 
@@ -39,6 +39,9 @@ export const OPENERS = [
                 } else if (youtubeLink.includes('/playlist')) {
                     const playlistId = parts[parts.length - 1].split('list=')[1];
                     return `${base}playlist?id=${playlistId}`;
+                } else if (youtubeLink.includes('youtu.be')) {
+                    const videoId = parts[parts.length - 1]
+                    return `${base}video?id=${videoId}`;
                 } else {
                     return `vnd.youtube://${youtubeLink}` || "Invalid YouTube link format";
                 }
@@ -54,8 +57,8 @@ export const OPENERS = [
         icon: <BsTwitterX className="w-6 h-6 mr-2 text-slate-900" />,
         getOpener: (twitterLink: string) => {
             // identify format based on url structure and transform into following format
-            console.log(twitterLink.startsWith('https://twitter.com'), twitterLink)
-            if (twitterLink.startsWith('https://twitter.com') || twitterLink.startsWith('https://x.com')) {
+            console.log(twitterLink.startsWith('twitter.com'), twitterLink)
+            if (twitterLink.startsWith('twitter.com') || twitterLink.startsWith('x.com')) {
                 const parts = twitterLink.split('/');
                 const base = 'twitter://';
 
@@ -114,7 +117,7 @@ export const OPENERS = [
         id: "instagram",
         icon: <PiInstagramLogoBold className="w-6 h-6 mr-2 text-violet-900" />,
         getOpener: (instagramLink: string) => {
-            if (instagramLink.startsWith('https://www.instagram.com')) {
+            if (instagramLink.startsWith('www.instagram.com')) {
                 const parts = instagramLink.split('/');
                 const base = 'instagram://';
 
@@ -150,7 +153,7 @@ export const OPENERS = [
         id: "linkedin",
         icon: <LuLinkedin className="w-6 h-6 mr-2 text-violet-900" />,
         getOpener: (linkedInLink: string) => {
-            if (linkedInLink.startsWith('https://www.linkedin.com')) {
+            if (linkedInLink.startsWith('www.linkedin.com')) {
                 const parts = linkedInLink.split('/');
                 const base = 'linkedin://';
 
@@ -174,7 +177,7 @@ export const OPENERS = [
         id: "facebook",
         icon: <LuLinkedin className="w-6 h-6 mr-2 text-violet-900" />,
         getOpener: (facebookLink: string) => {
-            if (facebookLink.startsWith('https://www.facebook.com')) {
+            if (facebookLink.startsWith('www.facebook.com')) {
                 const parts = facebookLink.split('/');
                 const base = 'facebook://';
 
@@ -203,7 +206,7 @@ export const OPENERS = [
         id: "slack",
         icon: <LuLinkedin className="w-6 h-6 mr-2 text-violet-900" />,
         getOpener: (slackLink: string) => {
-            if (slackLink.startsWith('https://slack.com')) {
+            if (slackLink.startsWith('slack.com')) {
                 const parts = slackLink.split('/');
                 const base = 'slack://';
 
@@ -226,7 +229,7 @@ export const OPENERS = [
         id: "discord",
         icon: <LuLinkedin className="w-6 h-6 mr-2 text-violet-900" />,
         getOpener: (discordLink: string) => {
-            if (discordLink.startsWith('https://discord.com')) {
+            if (discordLink.startsWith('discord.com')) {
                 const parts = discordLink.split('/');
                 const base = 'discord://';
 
@@ -247,7 +250,7 @@ export const OPENERS = [
         id: "tiktok",
         icon: <LuLinkedin className="w-6 h-6 mr-2 text-violet-900" />,
         getOpener: (tiktokLink: string) => {
-            if (tiktokLink.startsWith('https://www.tiktok.com')) {
+            if (tiktokLink.startsWith('www.tiktok.com')) {
                 const parts = tiktokLink.split('/');
                 const base = 'tiktok://';
 
@@ -269,7 +272,7 @@ export const OPENERS = [
         id: "snapchat",
         icon: <LuLinkedin className="w-6 h-6 mr-2 text-violet-900" />,
         getOpener: (snapchatLink: string) => {
-            if (snapchatLink.startsWith('https://www.snapchat.com')) {
+            if (snapchatLink.startsWith('www.snapchat.com')) {
                 const parts = snapchatLink.split('/');
                 const base = 'snapchat://';
 
@@ -289,7 +292,7 @@ export const OPENERS = [
         id: "pinterest",
         icon: <LuLinkedin className="w-6 h-6 mr-2 text-violet-900" />,
         getOpener: (pinterestLink: string) => {
-            if (pinterestLink.startsWith('https://www.pinterest.com')) {
+            if (pinterestLink.startsWith('www.pinterest.com')) {
                 const parts = pinterestLink.split('/');
                 const base = 'pinterest://';
 
@@ -315,7 +318,7 @@ export const OPENERS = [
         id: "reddit",
         icon: <LuLinkedin className="w-6 h-6 mr-2 text-violet-900" />,
         getOpener: (redditLink: string) => {
-            if (redditLink.startsWith('https://www.reddit.com')) {
+            if (redditLink.startsWith('www.reddit.com')) {
                 const parts = redditLink.split('/');
                 const base = 'reddit://';
 
@@ -338,7 +341,7 @@ export const OPENERS = [
         id: "telegram",
         icon: <LuLinkedin className="w-6 h-6 mr-2 text-violet-900" />,
         getOpener: (telegramLink: string) => {
-            if (telegramLink.startsWith('https://t.me')) {
+            if (telegramLink.startsWith('t.me')) {
                 const parts = telegramLink.split('/');
                 const base = 'tg://resolve?domain=';
 
@@ -357,7 +360,7 @@ export const OPENERS = [
         id: "whatsapp",
         icon: <LuLinkedin className="w-6 h-6 mr-2 text-violet-900" />,
         getOpener: (whatsappLink: string) => {
-            if (whatsappLink.startsWith('https://wa.me')) {
+            if (whatsappLink.startsWith('wa.me')) {
                 const base = 'whatsapp://send?phone=';
 
                 if (whatsappLink.includes('?phone=')) {
@@ -375,7 +378,7 @@ export const OPENERS = [
         id: "spotify",
         icon: <LuLinkedin className="w-6 h-6 mr-2 text-violet-900" />,
         getOpener: (spotifyLink: string) => {
-            if (spotifyLink.startsWith('https://open.spotify.com')) {
+            if (spotifyLink.startsWith('open.spotify.com')) {
                 const parts = spotifyLink.split('/');
                 const base = 'spotify://';
 
@@ -408,7 +411,7 @@ export const OPENERS = [
         id: "maps",
         icon: <LuLinkedin className="w-6 h-6 mr-2 text-violet-900" />,
         getOpener: (mapLink: string) => {
-            if (mapLink.startsWith('https://www.google.com/maps')) {
+            if (mapLink.startsWith('www.google.com/maps')) {
                 const parts = mapLink.split('/');
                 const base = 'comgooglemaps://';
 
@@ -421,7 +424,7 @@ export const OPENERS = [
                 } else {
                     return `${base}`;
                 }
-            } else if (mapLink.startsWith('https://www.apple.com/maps')) {
+            } else if (mapLink.startsWith('www.apple.com/maps')) {
                 // Apple Maps deeplink format if available
                 return "applemaps://";
             } else {
@@ -435,7 +438,7 @@ export const OPENERS = [
         id: "others",
         icon: <RiLinksFill className="w-6 h-6 mr-2 text-violet-900" />,
         getOpener: (link: string) => {
-            if (!link.startsWith('https://')) {
+            if (!link.startsWith('')) {
                 console.log("Invalid link format. Opening in default browser.");
                 return `googlechrome://${link}` || window.open(link)    
 
