@@ -30,6 +30,7 @@
     "validator": "^13.11.0"
   },
   "devDependencies": {
+    "@types/lodash.findkey": "^4.6.9",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
