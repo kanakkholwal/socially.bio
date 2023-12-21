@@ -97,7 +97,7 @@ export default class LinkOpener<T extends TempLinkType> {
     if (availableOpener && availableOpener.getOpener) {
       const snatisedLink = link.replace("https","").replace("http","").replace(":","").replace("//","")
       console.log("snatisedLink",snatisedLink)
-      appScheme = availableOpener.getOpener(link) || '';
+      appScheme = availableOpener.getOpener(snatisedLink) || '';
       console.log("Going to open", appScheme)
       // window.location.assign(appScheme)
       window.open(appScheme, '_blank');
