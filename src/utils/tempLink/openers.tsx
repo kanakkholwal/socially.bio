@@ -187,17 +187,20 @@ export const OPENERS = [
 
                 if (linkedInLink.includes('/in/')) {
                     const username = parts[parts.length - 1];
-                    return `${base}profile/${username}`;
+                    return `${base}in/${username}`;
                 } else if (linkedInLink.includes('/company/')) {
                     const companyId = parts[parts.length - 1];
                     return `${base}company/${companyId}`;
+                } else if (linkedInLink.includes('/feed/update/')) {
+                    parts.shift();
+                    return `${base}${parts.join('/')}`;
                 } else {
-                    return `linkedin://${linkedInLink}` || "Invalid LinkedIn link format";
+                    parts.shift();
+                    return `linkedin://${parts.join("/")}` || "Invalid LinkedIn link format";
                 }
             } else {
                 return `linkedin://${linkedInLink}` || "Not a LinkedIn link";
             }
-            return `linkedin://${linkedInLink}`;
         }
     },
     {
