@@ -62,7 +62,7 @@ export const OPENERS = [
             }
         }
     },
-    {
+    {   
         label: "X / Twitter",
         id: "twitter",
         icon: <BsTwitterX className="w-6 h-6 mr-2 text-slate-900" />,
@@ -122,7 +122,9 @@ export const OPENERS = [
                         return `${base}post?message=${message}`;
                     }
                 } else {
-                    return `twitter://${twitterLink}` || "Invalid Twitter link format";
+                    // skip the first element as it is empty
+                    parts.shift();
+                    return `twitter://${parts.join('/')}` || "Invalid Twitter link format";
                 }
             } else {
                 return `googlechrome://${twitterLink}` || "Not a Twitter link";
@@ -135,13 +137,20 @@ export const OPENERS = [
         id: "instagram",
         icon: <PiInstagramLogoBold className="w-6 h-6 mr-2 text-violet-900" />,
         getOpener: (instagramLink: string) => {
-            if (instagramLink.startsWith('www.instagram.com')) {
+            if (instagramLink.startsWith('instagram.com')) {
                 const parts = instagramLink.split('/');
                 const base = 'instagram://';
+                const instagramRegex = new RegExp('(?:https?:\/\/)?(?:www\.)?instagram\.com\/(?:[a-zA-Z0-9_\.]{1,30})');
 
-                if (instagramLink.includes('/p/')) {
+                if (instagramRegex.test(instagramLink)) {
+                    const username = parts[parts.length - 1];
+                    return `${base}user?username=${username}`;
+                } else if (instagramLink.includes('/p/') || instagramLink.includes('/reels/')) {
                     const postCode = parts[parts.length - 1];
                     return `${base}media?id=${postCode}`;
+                } else if (instagramLink.includes('/reels/')) {
+                    const postCode = parts[parts.length - 1];
+                    return `${base}reels?id=${postCode}`;
                 } else if (instagramLink.includes('/tv/')) {
                     const tvCode = parts[parts.length - 1];
                     return `${base}tv?id=${tvCode}`;
@@ -158,7 +167,7 @@ export const OPENERS = [
                     const username = parts[parts.length - 1];
                     return `${base}user?username=${username}`;
                 } else {
-                    return `instagram://${instagramLink}` || "Invalid Instagram link format";
+                    return `instagram://${parts.join('/')}` || "Invalid Instagram link format";
                 }
             } else {
                 return `instagram://${instagramLink}` || "Not an Instagram link";
@@ -402,21 +411,35 @@ export const OPENERS = [
 
                 if (spotifyLink.includes('/track/')) {
                     const trackId = parts[parts.length - 1].split('?')[0];
-                    return `${base}track/${trackId}`;
+                    const rest = parts[parts.length - 1].split('?')[1];
+                    return `${base}track/${trackId}?${rest}`;
                 } else if (spotifyLink.includes('/album/')) {
                     const albumId = parts[parts.length - 1].split('?')[0];
-                    return `${base}album/${albumId}`;
+                    const rest = parts[parts.length - 1].split('?')[1];
+                    return `${base}album/${albumId}?${rest}`;
                 } else if (spotifyLink.includes('/playlist/')) {
                     const playlistId = parts[parts.length - 1].split('?')[0];
-                    return `${base}playlist/${playlistId}`;
+                    const rest = parts[parts.length - 1].split('?')[1];
+                    return `${base}playlist/${playlistId}?${rest}`;
                 } else if (spotifyLink.includes('/artist/')) {
                     const artistId = parts[parts.length - 1].split('?')[0];
-                    return `${base}artist/${artistId}`;
+                    const rest = parts[parts.length - 1].split('?')[1];
+                    return `${base}artist/${artistId}?${rest}`;
                 } else if (spotifyLink.includes('/blends/')) {
                     const blendId = parts[parts.length - 1].split('?')[0];
-                    return `${base}blend/${blendId}`;
+                    const rest = parts[parts.length - 1].split('?')[1];
+                    return `${base}blend/${blendId}?${rest}`;
+                }  else if (spotifyLink.includes('/user/')) {
+                    const userId = parts[parts.length - 1].split('?')[0];
+                    const rest = parts[parts.length - 1].split('?')[1];
+                    return `${base}user/${userId}?${rest}`;
+                }  else if (spotifyLink.includes('/show/')) {
+                    const showId = parts[parts.length - 1].split('?')[0];
+                    const rest = parts[parts.length - 1].split('?')[1];
+                    return `${base}show/${showId}?${rest}`;
                 } else {
-                    return `spotify://${spotifyLink}` || "Invalid Spotify link format";
+                    
+                    return `spotify://${parts.join('/')}` || "Invalid Spotify link format";
                 }
             } else {
                 return `spotify://${spotifyLink}` || "Not a Spotify link";
