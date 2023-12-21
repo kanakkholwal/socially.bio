@@ -95,14 +95,12 @@ export default class LinkOpener<T extends TempLinkType> {
     let appScheme = '';
     const availableOpener = OPENERS.find((item) => item.id.toLowerCase() === opener.toLowerCase())
     if (availableOpener && availableOpener.getOpener) {
-      const snatisedLink = link.replace("https","").replace("http","").replace(":","").replace("//","")
+      let snatisedLink = link.replace("https","").replace("http","").replace(":","").replace("//","")
+
       console.log("snatisedLink",snatisedLink)
       appScheme = availableOpener.getOpener(snatisedLink) || '';
       console.log("Going to open", appScheme)
-      // window.location.assign(appScheme)
       window.open(appScheme, '_blank');
-
-
       return;
     }
 
@@ -111,16 +109,10 @@ export default class LinkOpener<T extends TempLinkType> {
         window.location.href = appScheme; // Open in iOS app
       } else {
         const androidIntent = `intent://${appScheme}#Intent;scheme=${platform};package=com.${platform};S.browser_fallback_url=${encodeURIComponent(link)};end;`;
-        // const elemenent = document.createElement('a');
-        // elemenent.setAttribute('href', androidIntent);
-        // elemenent.setAttribute('target', '_blank')
-        // elemenent.setAttribute('style', 'display:none;');
-        // document.body.appendChild(elemenent);
-        // elemenent.click();
-        // window.location.href = androidIntent; // Open in Android app with fallback
-        // window.open(androidIntent, '_blank');
-        window.location.assign(androidIntent)
-
+        window.location.assign(androidIntent) // Open in Android app
+        window.setTimeout(() => {
+          window.location.href = link; // Open in browser if Android app not installed
+        })
       }
     } else {
       // If platform not found or unsupported, open in default browser

@@ -30,18 +30,29 @@ export const OPENERS = [
                             break;
                         }
                     }
-
+                    let t = '';
+                    if (youtubeLink.includes('?t=')) {
+                        t = youtubeLink.split('?t=')[1];
+                    }
                     if (videoId) {
-                        return `${base}video?id=${videoId}`;
+                        return `${base}${videoId}${t ? `?t=${t}` : ''}`;
                     } else {
                         return `vnd.youtube://${youtubeLink}` || "Invalid YouTube link format";
                     }
                 } else if (youtubeLink.includes('/playlist')) {
                     const playlistId = parts[parts.length - 1].split('list=')[1];
-                    return `${base}playlist?id=${playlistId}`;
+                    return `${base}playlist?list=${playlistId}`;
                 } else if (youtubeLink.includes('youtu.be')) {
-                    const videoId = parts[parts.length - 1]
-                    return `${base}video?id=${videoId}`;
+                    const videoId = parts[parts.length - 1];
+                    let t = '';
+                    if (youtubeLink.includes('?t=')) {
+                        t = youtubeLink.split('?t=')[1];
+                    }
+                    if (videoId) {
+                        return `${base}${videoId}${t ? `?t=${t}` : ''}`;
+                    } else {
+                        return `vnd.youtube://${youtubeLink}` || "Invalid YouTube link format";
+                    }
                 } else {
                     return `vnd.youtube://${youtubeLink}` || "Invalid YouTube link format";
                 }
@@ -61,10 +72,14 @@ export const OPENERS = [
             if (twitterLink.startsWith('twitter.com') || twitterLink.startsWith('x.com')) {
                 const parts = twitterLink.split('/');
                 const base = 'twitter://';
-
-                if (twitterLink.includes('/user/')) {
-                    const screenName = parts[parts.length - 1];
-                    return `${base}user?screen_name=${screenName}`;
+                // regex to check if it has username ^https?://(www\.)?twitter\.com/(#!/)?([^/]+)(/\w+)*$
+                const usernameRegex = new RegExp('(?:https?:\/\/)?(?:www\.)?(?:twitter|x)\.com\/(?:#!\/)?@?([a-zA-Z0-9_]{1,15})');
+                if (usernameRegex.test(twitterLink)) {
+                    const username = parts[parts.length - 1];
+                    return `${base}user?screen_name=${username}`;
+                } else if (twitterLink.includes('/i/user/') ) {
+                    const userId = parts[parts.length - 1];
+                    return `${base}user?id=${userId}`;
                 } else if (twitterLink.includes('/status/')) {
                     const statusId = parts[parts.length - 1];
                     return `${base}status?id=${statusId}`;
@@ -78,8 +93,11 @@ export const OPENERS = [
                     const screenName = parts[parts.length - 3];
                     const slug = parts[parts.length - 1];
                     return `${base}list?screen_name=${screenName}&slug=${slug}`;
-                } else if (twitterLink.includes('/search?q=')) {
-                    const query = parts[parts.length - 1].split('=')[1];
+                } else if (twitterLink.includes('/hashtag/')) {
+                    const screenName = twitterLink.split('/hashtag/')[1];
+                    return `${base}search?query=${screenName}`;
+                }  else if (twitterLink.includes('/search?q=')) {
+                    const query = parts[parts.length - 1].split('?q=')[1];
                     return `${base}search?query=${query}`;
                 } else if (twitterLink.includes('/compose/tweet')) {
                     const message = parts[parts.length - 1].split('=')[1];
@@ -440,7 +458,7 @@ export const OPENERS = [
         getOpener: (link: string) => {
             if (!link.startsWith('')) {
                 console.log("Invalid link format. Opening in default browser.");
-                return `googlechrome://${link}` || window.open(link)    
+                return `googlechrome://${link}` || window.open(link)
 
             }
 
