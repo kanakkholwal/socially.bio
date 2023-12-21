@@ -30,9 +30,12 @@ export const OPENERS = [
                             break;
                         }
                     }
-
+                    let t = '';
+                    if (youtubeLink.includes('?t=')) {
+                        t = youtubeLink.split('?t=')[1];
+                    }
                     if (videoId) {
-                        return `${base}${videoId}`;
+                        return `${base}${videoId}${t ? `?t=${t}` : ''}`;
                     } else {
                         return `vnd.youtube://${youtubeLink}` || "Invalid YouTube link format";
                     }
@@ -40,9 +43,13 @@ export const OPENERS = [
                     const playlistId = parts[parts.length - 1].split('list=')[1];
                     return `${base}playlist?list=${playlistId}`;
                 } else if (youtubeLink.includes('youtu.be')) {
-                    const videoId = parts[parts.length - 1]
+                    const videoId = parts[parts.length - 1];
+                    let t = '';
+                    if (youtubeLink.includes('?t=')) {
+                        t = youtubeLink.split('?t=')[1];
+                    }
                     if (videoId) {
-                        return `${base}${videoId}`;
+                        return `${base}${videoId}${t ? `?t=${t}` : ''}`;
                     } else {
                         return `vnd.youtube://${youtubeLink}` || "Invalid YouTube link format";
                     }
