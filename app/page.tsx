@@ -39,8 +39,8 @@ const navLinks = [
 ]
 function Navbar() {
 
-  return (<div className='w-full bg-transparent h-28 px-8 flex justify-center items-center border-b border-border'>
-    <div className='w-full max-w-7xl flex justify-between items-center mx-auto'>
+  return (<div className='w-full bg-transparent h-28 px-6 sm:px-8 flex justify-center items-center border-b border-border'>
+    <div className='w-full max-w-7xl flex justify-between items-center gap-3 mx-auto'>
 
       <Link href='/' className="flex-auto">
         <Image src='/socially-bio.svg' width={200} height={100} alt={"Socially Bio - The only link you'll ever need."} className="w-48 h-10" draggable={false} />
