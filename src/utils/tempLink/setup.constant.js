@@ -1,3 +1,14 @@
+// @params {object} setups - Object containing all the setups for the apps
+// @params {string} setups[app] - Name of the app
+// @params {object} setups[app][platform] - Object containing the app details for the platform
+// @params {string} setups[app][platform][appName] - Name of the app
+// @params {string} setups[app][platform][appId] - App ID for the platform
+// @params {string} setups[app][platform][storeUrl] - App store URL for the platform
+// @params {boolean} setups[app][platform][androidDisabled] - Whether to disable the app for Android
+// @params {boolean} setups[app][platform][fallback] - Whether to use fallback
+// @params {boolean} setups[app][platform][fallbackToWeb] - Whether to use fallback to web
+// @params {number} setups[app][platform][delay] - Delay in milliseconds before redirecting to the app store
+// @params {number} setups[app][platform][delta] - Delta in milliseconds before redirecting to the app store
 
 export  const setups ={
     "twitter": {
