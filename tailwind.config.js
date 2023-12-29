@@ -1,4 +1,5 @@
-const config = {
+
+const config  = {
   content: [
     './pages/**/*.{ts,tsx,js,jsx}',
     './components/**/*.{ts,tsx,js,jsx}',

@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Navbar } from "app/components/navbar";
 import { Space_Grotesk } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -14,56 +15,7 @@ import { useState } from "react";
 
 const space_font = Space_Grotesk({ subsets: ['latin'], preload: true })
 
-const navLinks = [
-  {
-    title: 'Home',
-    href: '/',
-  },
-  {
-    title: 'About',
-    href: '/about',
-  },
-  {
-    title: 'Services',
-    href: '/services',
-  },
-  {
-    title: 'Pricing',
-    href: '/pricing',
-  },
-  {
-    title: 'Contact',
-    href: '/contact',
-  },
 
-]
-function Navbar() {
-
-  return (<div className='w-full bg-transparent h-28 px-6 sm:px-8 flex justify-center items-center border-b border-border'>
-    <div className='w-full max-w-7xl flex justify-between items-center gap-3 mx-auto'>
-
-      <Link href='/' className="flex-auto">
-        <Image src='/socially-bio.svg' width={200} height={100} alt={"Socially Bio - The only link you'll ever need."} className="w-48 h-10" draggable={false} />
-      </Link>
-      <div className='flex items-center'>
-        <nav role='navigation' className='hidden lg:flex space-x-8 mr-8'>
-          {navLinks.map((link, index) => (
-            <Link href={link.href} key={index} className='text-lg font-medium text-grey-400 hover:text-slate-900'>
-              {link.title}
-
-            </Link>
-          ))}
-        </nav>
-        <Button size="lg" className="rounded-full hover:bg-black ease-linear duration-300" asChild>
-          <Link href='https://app.socially.bio/'>
-            Get Started
-          </Link>
-        </Button>
-      </div>
-
-    </div>
-  </div>)
-}
 const features = [
   {
     title: 'Social Media Links',
@@ -310,7 +262,7 @@ export default function Home() {
             <Accordion type="multiple" className="w-full space-y-5">
               {faqs.map((faq, index) => {
                 return <AccordionItem value={"item-" + index} key={index} className="bg-primary/10 rounded-xl data-[state=open]:bg-primary/20">
-                  <AccordionTrigger className="p-5 px-8 text-3xl font-bold text-left text-slate-700 !no-underline data-[state=open]:text-slate-900">
+                  <AccordionTrigger className="p-5 px-8 text-3xl font-bold text-left  !no-underline text-slate-900">
                     {faq.title}
                   </AccordionTrigger>
                   <AccordionContent className="text-slate-800 font-medium text-lg text-left px-9">
