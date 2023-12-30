@@ -7,7 +7,7 @@ export default function ErrorPage() {
     return <div className="min-h-screen w-full p-5 flex justify-between items-stretch bg-white ">
         <div className="flex flex-col justify-center items-center p-4 w-full h-screen">
             <Image src="/404.svg" width={500} height={500} alt="Not found | Socially Bio"
-                className="object-contain w-full h-auto max-w-6xl mix-blend-multiply"
+                className="object-contain w-full h-auto max-w-4xl mix-blend-multiply"
             />
 
             <h4 className="text-4xl font-semibold text-slate-900">
@@ -19,7 +19,7 @@ export default function ErrorPage() {
 
             </p>
             <div className="mt-5 flex justify-center items-center gap-3">
-                <Button className="bg-slate-900 text-white" asChild>
+                <Button className="bg-slate-900 text-white duration-300" asChild>
                     <Link href="/">Go to Home</Link>
                 </Button>
                 </div>
