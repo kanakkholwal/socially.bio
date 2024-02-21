@@ -67,7 +67,39 @@ export const authOptions: NextAuthOptions = {
     providers: [
 
     ],
-
+    callbacks: {
+        // We can pass in additional information from the user document MongoDB returns
+        // This could be avatars, role, display name, etc...
+        async jwt({ token, user }: {
+            token: any,
+            user: any
+        }): Promise<any> {
+            if (user) {
+                token.user = {
+                    _id: user._id,
+                    name: user.name,
+                    email: user.email,
+                    username: user.username,
+                    account_type: user.account_type || "free",
+                    profilePicture: user.profilePicture,
+                    role: user.role || "user",
+                    verified: user.verified || false,
+                    provider: user.provider
+                }
+            }
+            return token
+        },
+        // If we want to access our extra user info from sessions we have to pass it the token here to get them in sync:
+        session: async ({ session, token }: {
+            session: any,
+            token: any
+        }) => {
+            if (token) {
+                session.user = token.user
+            }
+            return session
+        }
+    },
     pages: {
         // Here you can define your own custom pages for login, recover password, etc.
         signIn: '/', // Displays sign in buttons
