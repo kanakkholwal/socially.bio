@@ -1,7 +1,6 @@
 import { NextAuthOptions } from "next-auth";
 // Define types for environment variables
 interface AuthEnv {
-
     NEXT_AUTH_SECRET: string;
     NEXTAUTH_URL: string;
 
