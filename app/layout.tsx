@@ -1,3 +1,5 @@
+"use client";
+
 import type { Metadata } from 'next';
 import { SessionProvider } from 'next-auth/react'
 import { DM_Sans } from 'next/font/google';
@@ -18,7 +20,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={dm_sans.className}>
         <SessionProvider>{children}</SessionProvider> 
-        {children}
       </body>
     </html>
   )
