@@ -102,11 +102,11 @@ export const authOptions: NextAuthOptions = {
     },
     pages: {
         // Here you can define your own custom pages for login, recover password, etc.
-        signIn: '/', // Displays sign in buttons
+        signIn: 'https://app.socially.bio/', // Displays sign in buttons
         // signOut: '/auth/sign out',
         // error: '/auth/error',
         // verifyRequest: '/auth/verify-request',
-        newUser: '/register'
+        newUser: 'https://app.socially.bio/register'
     },
 }
 
