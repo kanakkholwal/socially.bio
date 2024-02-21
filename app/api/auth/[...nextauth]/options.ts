@@ -67,6 +67,7 @@ export const authOptions: NextAuthOptions = {
             }
         },
     },
+    providers:[],
     pages: {
         // Here you can define your own custom pages for login, recover password, etc.
         signIn: 'https://app.socially.bio/', // Displays sign in buttons
