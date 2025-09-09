@@ -1,6 +1,4 @@
-import { authOptions } from "app/api/auth/[...nextauth]/options";
 import type { Metadata } from 'next';
-import { getServerSession } from "next-auth/next";
 import dbConnect from "src/lib/dbConnect";
 import TempLink from "src/models/tempLink";
 import OpenerPage from "./opener";
@@ -14,8 +12,6 @@ export const metadata: Metadata = {
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-    const session = await getServerSession(authOptions);
-    console.log(session)
     await dbConnect();
 
     const slug = params.slug

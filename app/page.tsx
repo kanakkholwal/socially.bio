@@ -16,161 +16,6 @@ import { useState } from "react";
 const space_font = Space_Grotesk({ subsets: ['latin'], preload: true })
 
 
-const features = [
-  {
-    title: 'Social Media Links',
-    description:
-      'Add all your social media links to your page and share it with your followers.',
-    icon: (
-      <svg
-        className="h-6 w-6 text-white"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Link in Bio',
-    description:
-      'Add your Socially Bio link to your Instagram bio and never change it again.',
-    icon: (
-      <svg
-        className="h-6 w-6 text-white"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          clipRule="evenodd"
-          d="M13 10V3L4 14h7v7l9-11h-7z"
-          fillRule="evenodd"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: 'Content Distribution',
-    description:
-      'Automatically distribute your content to all your social media profiles.',
-    icon: (
-      <svg
-        className="h-6 w-6 text-white"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          clipRule="evenodd"
-          d="M13 10V3L4 14h7v7l9-11h-7z"
-          fillRule="evenodd"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: 'Analytics',
-    description:
-      'Track your page views and link clicks with our analytics dashboard.',
-    icon: (
-      <svg
-        className="h-6 w-6 text-white"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          clipRule="evenodd"
-          d="M13 10V3L4 14h7v7l9-11h-7z"
-          fillRule="evenodd"
-        />
-      </svg>
-    ),
-  }, {
-    title: 'Customization',
-    description:
-      'Customize your page with your own logo, background image and colors.',
-    icon: (
-      <svg
-        className="h-6 w-6 text-white"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          clipRule="evenodd"
-          d="M13 10V3L4 14h7v7l9-11h-7z"
-          fillRule="evenodd"
-        />
-      </svg>
-    ),
-  },
-  // {
-  //   title: 'Custom Domain',
-  //   description:
-  //     'Use your own domain name to make your page look more professional.',
-  //   icon: (
-  //     <svg
-  //       className="h-6 w-6 text-white"
-  //       fill="none"
-  //       strokeLinecap="round"
-  //       strokeLinejoin="round"
-  //       strokeWidth={2}
-  //       viewBox="0 0 24 24"
-  //       stroke="currentColor"
-  //     >
-  //       <path
-  //         clipRule="evenodd"
-  //         d="M13 10V3L4 14h7v7l9-11h-7z"
-  //         fillRule="evenodd"
-  //       />
-  //     </svg>
-  //   ),
-  // },
-
-]
-const faqs = [
-  {
-    title: 'How does it work?',
-    description:
-      'Socially Bio is a free tool that allows you to create a beautiful landing page that drives traffic to all of your social media profiles with one link and automate your content distribution.',
-  },
-  {
-    title: 'How much does it cost?',
-    description:
-      'Socially Bio is free to use. We plan to introduce a pro plan in the future with more features.',
-
-  },
-  {
-    title: 'How do I get started?',
-    description:
-      'Click the Get Started button and sign up for an account. Once you have created your account, you can start adding your social media links.',
-
-  },
-  {
-    title: 'How do I add my Socially Bio link to my Instagram bio?',
-    description:
-      'Once you have created your Socially Bio page, you can add the link to your Instagram bio by clicking the Edit Profile button on your Instagram profile and pasting the link in the Website field.',
-  },
-
-]
 
 
 export default function Home() {
@@ -338,3 +183,158 @@ function Feature({ title, description, icon }: { title: string, description: str
     </div>
   )
 }
+const features = [
+  {
+    title: 'Social Media Links',
+    description:
+      'Add all your social media links to your page and share it with your followers.',
+    icon: (
+      <svg
+        className="h-6 w-6 text-white"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Link in Bio',
+    description:
+      'Add your Socially Bio link to your Instagram bio and never change it again.',
+    icon: (
+      <svg
+        className="h-6 w-6 text-white"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          clipRule="evenodd"
+          d="M13 10V3L4 14h7v7l9-11h-7z"
+          fillRule="evenodd"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: 'Content Distribution',
+    description:
+      'Automatically distribute your content to all your social media profiles.',
+    icon: (
+      <svg
+        className="h-6 w-6 text-white"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          clipRule="evenodd"
+          d="M13 10V3L4 14h7v7l9-11h-7z"
+          fillRule="evenodd"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: 'Analytics',
+    description:
+      'Track your page views and link clicks with our analytics dashboard.',
+    icon: (
+      <svg
+        className="h-6 w-6 text-white"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          clipRule="evenodd"
+          d="M13 10V3L4 14h7v7l9-11h-7z"
+          fillRule="evenodd"
+        />
+      </svg>
+    ),
+  }, {
+    title: 'Customization',
+    description:
+      'Customize your page with your own logo, background image and colors.',
+    icon: (
+      <svg
+        className="h-6 w-6 text-white"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          clipRule="evenodd"
+          d="M13 10V3L4 14h7v7l9-11h-7z"
+          fillRule="evenodd"
+        />
+      </svg>
+    ),
+  },
+  // {
+  //   title: 'Custom Domain',
+  //   description:
+  //     'Use your own domain name to make your page look more professional.',
+  //   icon: (
+  //     <svg
+  //       className="h-6 w-6 text-white"
+  //       fill="none"
+  //       strokeLinecap="round"
+  //       strokeLinejoin="round"
+  //       strokeWidth={2}
+  //       viewBox="0 0 24 24"
+  //       stroke="currentColor"
+  //     >
+  //       <path
+  //         clipRule="evenodd"
+  //         d="M13 10V3L4 14h7v7l9-11h-7z"
+  //         fillRule="evenodd"
+  //       />
+  //     </svg>
+  //   ),
+  // },
+
+]
+const faqs = [
+  {
+    title: 'How does it work?',
+    description:
+      'Socially Bio is a free tool that allows you to create a beautiful landing page that drives traffic to all of your social media profiles with one link and automate your content distribution.',
+  },
+  {
+    title: 'How much does it cost?',
+    description:
+      'Socially Bio is free to use. We plan to introduce a pro plan in the future with more features.',
+
+  },
+  {
+    title: 'How do I get started?',
+    description:
+      'Click the Get Started button and sign up for an account. Once you have created your account, you can start adding your social media links.',
+
+  },
+  {
+    title: 'How do I add my Socially Bio link to my Instagram bio?',
+    description:
+      'Once you have created your Socially Bio page, you can add the link to your Instagram bio by clicking the Edit Profile button on your Instagram profile and pasting the link in the Website field.',
+  },
+
+]
