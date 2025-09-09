@@ -25,7 +25,7 @@ export default function OpenerPage({ tempLink, updateHits }: {
           Socially Bio
         </CardTitle>
         <CardDescription>
-          The Only Link You'll Ever Need
+          The Only Link You{"'"}ll Ever Need
         </CardDescription>
       </CardHeader>
       <CardContent>

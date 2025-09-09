@@ -15,7 +15,7 @@ export default function ErrorPage() {
 
             </h4>
             <p className="text-md font-regular  mt-5">
-                The page you are looking for doesn't exist or has been moved.
+                The page you are looking for doesn{"'"}t exist or has been moved.
 
             </p>
             <div className="mt-5 flex justify-center items-center gap-3">

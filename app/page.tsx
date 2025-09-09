@@ -28,7 +28,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto py-16 sm:py-20 lg:py-24">
             <h1 className="text-4xl font-extrabold text-slate-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
               <span className={"block text-8xl mb-2 " + space_font.className}>Socially Bio</span>
-              <span className="block text-primary">The only link you'll ever need.</span>
+              <span className="block text-primary">The only link you{"'"}ll ever need.</span>
             </h1>
             <p className="mt-6 text-xl text-gray-500">
               Socially Bio is a free tool that allows you to create a beautiful landing page that drives traffic to all of your social media profiles with one link
