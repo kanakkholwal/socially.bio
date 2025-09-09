@@ -11,7 +11,8 @@ export const metadata: Metadata = {
     description: 'Socially Bio is a free tool to help you manage multiple links for your social media accounts.',
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page(props: { params: Promise<{ slug: string }> }) {
+    const params = await props.params
     await dbConnect();
 
     const slug = params.slug
